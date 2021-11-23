@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRB;
     private Animator playerAnim;
     private AudioSource playerAudio;
-
+    
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public ParticleSystem explosionParticle;
@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver = false;
+    public bool doubleJumpUsed = false;
+    public float doubleJumpForce;
+    public bool doubleSpeed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +38,28 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
             playerAnim.SetTrigger("Jump_trig");
             dirtParticle.Stop();
-            playerAudio.PlayOneShot(jumpSound, 1.0f);
-            
+            playerAudio.PlayOneShot(jumpSound, 1.0f);            
         }
+        else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && !doubleJumpUsed && !gameOver)
+        {
+            playerRB.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
+            playerAnim.Play("Running_Jump", 3, 0f);
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
+            doubleJumpUsed = true;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            doubleSpeed = true;
+            playerAnim.SetFloat("Speed_Multiplier", 2.0f);
+        }
+        else if (doubleSpeed)
+        {
+            doubleSpeed = false;
+            playerAnim.SetFloat("Speed_Multiplier", 1.0f);
+        }
+
+
     }
     private void OnCollisionEnter(Collision collision)
     {
