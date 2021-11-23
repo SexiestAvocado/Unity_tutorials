@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] obstaclePrefabs;
+    public GameObject[] obstaclePrefabs; //refers prefab array
 
     private Vector3 spawnPos = new Vector3(25, 0, 0);
     private float startDelay = 2;
@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);//repeats the spawning
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -52,11 +52,4 @@ public class SpawnManager : MonoBehaviour
 
 
 }
-    /*GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
-    Vector3 spawnPosition = obstaclePrefab.transform.position;
-
-    if (playerControllerScript.gameOver == false)
-    {
-        Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
-    } */
     

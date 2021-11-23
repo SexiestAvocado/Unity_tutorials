@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour
 {
-    private float speed = 30;
+    private float speed = 15;
     private PlayerController playerControllerScript;
     private float leftBound = -9;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>(); //borrows the script
     }
 
     // Update is called once per frame
     void Update()
     {
+        //bool gameOver is borrowed from script
         if (playerControllerScript.gameOver == false)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
@@ -27,7 +28,7 @@ public class MoveLeft : MonoBehaviour
         }
         if (playerControllerScript.gameOver == false)
         {
-            if (playerControllerScript.doubleSpeed)
+            if (playerControllerScript.doubleSpeed)//accelerates when dash is active
             {
                 transform.Translate(Vector3.left * Time.deltaTime * (speed * 2));
             }
@@ -36,7 +37,7 @@ public class MoveLeft : MonoBehaviour
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
         }
-        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
+        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))//destroys out of bounds obstacles
         {
             Destroy(gameObject);
         }

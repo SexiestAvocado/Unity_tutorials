@@ -26,28 +26,35 @@ public class PlayerController : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
-        Physics.gravity *= gravityModifier;
+        Physics.gravity *= gravityModifier; //to use gravity 
     }
 
     // Update is called once per frame
     void Update()
     {
+        //jumping when player is on the ground running
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)//!bool is the same as bool == false or bool != true
         {
             playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             playerAnim.SetTrigger("Jump_trig");
             dirtParticle.Stop();
-            playerAudio.PlayOneShot(jumpSound, 1.0f);            
+            playerAudio.PlayOneShot(jumpSound, 1.0f);     
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && !doubleJumpUsed && !gameOver)
+        //double jumping when player is on air
+        else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && !doubleJumpUsed /*&& !gameOver*/)
         {
             playerRB.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
             playerAnim.Play("Running_Jump", 3, 0f);
             playerAudio.PlayOneShot(jumpSound, 1.0f);
             doubleJumpUsed = true;
         }
-
+        //let more than one double jump
+        if (isOnGround)
+        {
+            doubleJumpUsed = false;
+        }
+        //dash ability
         if (Input.GetKey(KeyCode.LeftShift))
         {
             doubleSpeed = true;
@@ -63,11 +70,13 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //animation on ground
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
             dirtParticle.Play();
         }
+        //things when dead
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("game over");
