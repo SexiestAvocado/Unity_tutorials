@@ -7,6 +7,12 @@ TagManager:
   - Enemy
   - Powerup
   - Powerup Indicator
+  - Rocket
+  - Rocket Indicator
+  - Bullet Indicator
+  - Bullet
+  - Rockets Powerup
+  - Bullet Powerup
   layers:
   - Default
   - TransparentFX
