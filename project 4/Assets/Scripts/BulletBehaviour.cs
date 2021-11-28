@@ -19,6 +19,8 @@ public class BulletBehaviour : MonoBehaviour
             transform.position += moveDirection * speed * Time.deltaTime;
             transform.LookAt(target);
         }
+
+        StartCoroutine(BulletCountdownRoutine());
     }
     public void Fire(Transform newTarget)
     {
@@ -38,5 +40,10 @@ public class BulletBehaviour : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+    IEnumerator BulletCountdownRoutine()//in this case sets a timer outside update method
+    {
+        yield return new WaitForSeconds(3);//after time it will do things
+        Destroy(gameObject);
     }
 }

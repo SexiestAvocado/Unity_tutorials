@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4077719340938876007
+--- !u!1 &5851122022902999736
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4077719340938576199}
-  - component: {fileID: 4077719340937872581}
-  - component: {fileID: 4077719340936794443}
-  - component: {fileID: 1736513147784261197}
-  - component: {fileID: 6760048526907153312}
+  - component: {fileID: 5847790629559840086}
+  - component: {fileID: 5855311714010165626}
+  - component: {fileID: 5864552206039713556}
+  - component: {fileID: 2430208942459540680}
+  - component: {fileID: 3078610138049336700}
   m_Layer: 0
-  m_Name: Rockets
-  m_TagString: Bullet Powerup
+  m_Name: Powerup 2
+  m_TagString: Smash Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4077719340938576199
+--- !u!4 &5847790629559840086
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077719340938876007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 3.31}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 5851122022902999736}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 2.05}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4077719340937872581
+--- !u!33 &5855311714010165626
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077719340938876007}
-  m_Mesh: {fileID: 4300000, guid: 31e6dd0b1a83d2545a63dfc9ef21c42f, type: 3}
---- !u!23 &4077719340936794443
+  m_GameObject: {fileID: 5851122022902999736}
+  m_Mesh: {fileID: 4300000, guid: c8e9a715daac24048a124a1f8e3487fa, type: 3}
+--- !u!23 &5864552206039713556
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077719340938876007}
+  m_GameObject: {fileID: 5851122022902999736}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c0880e4cd8a8704e82b6940624b569a, type: 2}
+  - {fileID: 2100000, guid: 0232fe7458ec9914f86beb2839915cfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,29 +83,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1736513147784261197
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077719340938876007}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.891613, y: 1.3382554, z: 0.20007595}
-  m_Center: {x: -0.0000018924475, y: 0, z: 0.000000011175871}
---- !u!114 &6760048526907153312
+--- !u!114 &2430208942459540680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077719340938876007}
+  m_GameObject: {fileID: 5851122022902999736}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9320e4b274a8a84fb46f4ce2b7ea94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupType: 2
+  powerupType: 3
+--- !u!65 &3078610138049336700
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851122022902999736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.528658, y: 0.43810678, z: 0.4578313}
+  m_Center: {x: 0, y: -0.000000022351742, z: 0}

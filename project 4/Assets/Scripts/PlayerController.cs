@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
     public float speed = 5.0f;
     public bool hasPowerup = false;
     public bool hasBullets = false;
+    public bool hasSmash = false;
     public GameObject powerupIndicator;
     public GameObject bulletsIndicator;
+    public GameObject smashIndicator;
     public PowerupType currentPowerup = PowerupType.None;
     public GameObject bulletPrefab;
 
@@ -17,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private float powerupStrength = 15.0f;
     private GameObject tmpBullet;
     private Coroutine powerupCountdown;
+    private float smashSpeed = 20.0f;
+    private float explosionForce = 50.0f;
+    private float explosionRadius = 6.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +36,18 @@ public class PlayerController : MonoBehaviour
         float forwardInput = Input.GetAxis("Vertical");
         playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
         powerupIndicator.transform.position = transform.position;//powerup follos the player
-        //bulletsIndicator.transform.position = transform.position;
+        bulletsIndicator.transform.position = transform.position;
+        smashIndicator.transform.position = transform.position;
 
         if (currentPowerup == PowerupType.Bullets && Input.GetKeyDown(KeyCode.F))
         {
             LaunchBullets();
+        }
+
+        if (currentPowerup == PowerupType.Smash && Input.GetKeyDown(KeyCode.Space) /*&& !hasSmash*/)
+        {
+            StartCoroutine(SmashCountdownRoutine());
+
         }
     }
     private void OnTriggerEnter(Collider other)//for info 
@@ -54,14 +66,22 @@ public class PlayerController : MonoBehaviour
             }
             powerupCountdown = StartCoroutine(PowerupCountdownRoutine());
         }
-        /*if (other.CompareTag("Bullet Powerup"))
+        if (other.CompareTag("Bullet Powerup"))
         {
             hasBullets = true;
             currentPowerup = other.gameObject.GetComponent<Powerup>().powerupType;
             bulletsIndicator.gameObject.SetActive(true);
             Destroy(other.gameObject);
             StartCoroutine(BulletsCountdownRoutine());            
-        }*/
+        }
+        if (other.CompareTag("Smash Powerup"))
+        {
+            hasSmash = true;
+            currentPowerup = other.gameObject.GetComponent<Powerup>().powerupType;
+            smashIndicator.gameObject.SetActive(true);
+            Destroy(other.gameObject);
+            StartCoroutine(SmashCountdownRoutine());
+        }
     }
     IEnumerator PowerupCountdownRoutine()//in this case sets a timer outside update method
     {
@@ -71,13 +91,38 @@ public class PlayerController : MonoBehaviour
         powerupIndicator.gameObject.SetActive(false);//hides powerup indicator
     }
 
-    /*IEnumerator BulletsCountdownRoutine()
+    IEnumerator BulletsCountdownRoutine()
     {
         yield return new WaitForSeconds(5);//after time it will do things
         hasBullets = false;
         currentPowerup = PowerupType.None;
         bulletsIndicator.gameObject.SetActive(false);//hides powerup indicator
-    }*/
+    }
+    IEnumerator SmashCountdownRoutine()
+    {     
+        playerRb.AddForce(Vector3.up * smashSpeed, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(0.5f);
+        var enemies = FindObjectsOfType<Enemy>();
+                
+        playerRb.AddForce(Vector3.down * smashSpeed * 2, ForceMode.Impulse);
+        
+        yield return new WaitForSeconds(0.35f);
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            //Apply an explosion force that originates from our position.
+            if (enemies[i] != null)
+            {
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
+            }
+        }
+
+        yield return new WaitForSeconds(4.0f);
+        hasSmash = false;
+        currentPowerup = PowerupType.None;
+        smashIndicator.gameObject.SetActive(false);
+    }
     private void OnCollisionEnter(Collision collision)//for physics interaction
     {
         if (collision.gameObject.CompareTag("Enemy") && hasPowerup && currentPowerup == PowerupType.Pushback)
@@ -94,10 +139,13 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var enemy in FindObjectsOfType<Enemy>())
         {
-            tmpBullet = Instantiate(bulletPrefab, transform.position + Vector3.up,
-            Quaternion.identity);
+            tmpBullet = Instantiate(bulletPrefab, transform.position + Vector3.up, Quaternion.identity);
             tmpBullet.GetComponent<BulletBehaviour>().Fire(enemy.transform);
         }
     }
-
+    void Smash()
+    {
+        
+        
+    }
 }

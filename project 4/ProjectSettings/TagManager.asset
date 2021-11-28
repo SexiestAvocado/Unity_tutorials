@@ -13,6 +13,8 @@ TagManager:
   - Bullet
   - Rockets Powerup
   - Bullet Powerup
+  - Smash Indicator
+  - Smash Powerup
   layers:
   - Default
   - TransparentFX

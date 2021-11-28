@@ -200,6 +200,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd5555088952419ebf0eb82e9096fa5, type: 3}
+--- !u!1 &285943407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+  m_PrefabInstance: {fileID: 455334105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &455334105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 473527571}
+    m_Modifications:
+    - target: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_Name
+      value: Smash Indicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_TagString
+      value: Smash Indicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.96299314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.630496
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2281365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+--- !u!4 &455334106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
+  m_PrefabInstance: {fileID: 455334105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &462111906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,6 +386,7 @@ Transform:
   m_Children:
   - {fileID: 581162023}
   - {fileID: 462111907}
+  - {fileID: 455334106}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -529,8 +605,10 @@ MonoBehaviour:
   speed: 5
   hasPowerup: 0
   hasBullets: 0
+  hasSmash: 0
   powerupIndicator: {fileID: 581162020}
   bulletsIndicator: {fileID: 1210697134}
+  smashIndicator: {fileID: 285943407}
   currentPowerup: 0
   bulletPrefab: {fileID: 3065520332986707460, guid: b0727811a9b3e61478c5c472ca9348c8, type: 3}
 --- !u!1 &1210697134 stripped
@@ -882,8 +960,14 @@ MonoBehaviour:
   enemyCount: 0
   waveNumber: 1
   powerupPrefabs:
-  - {fileID: 8659990837142462059, guid: 57e3b7ed5610de342aa35519238425c9, type: 3}
   - {fileID: 4077719340938876007, guid: a7859c34871de324dbbad2f14cef3338, type: 3}
+  - {fileID: 5851122022902999736, guid: b1476c35947da9f40a4820fa061418a2, type: 3}
+  - {fileID: 8659990837142462059, guid: 57e3b7ed5610de342aa35519238425c9, type: 3}
+  bossPrefab: {fileID: 6006393777914323410, guid: 6bd365d29234c91449e709867449f457, type: 3}
+  miniEnemyPrefabs:
+  - {fileID: 3103208443007702442, guid: 9576640bb7f1bfa4aa4839b6f23c0046, type: 3}
+  - {fileID: 3132010774352806392, guid: a850606d00d95cc488b9eb8bcf6b08de, type: 3}
+  bossRound: 2
 --- !u!4 &1824407349
 Transform:
   m_ObjectHideFlags: 0
