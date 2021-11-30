@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject titleScreen;
     public Button restartButton;
     public bool isGameActive;
-
+    public GameObject pauseScreen;
+    
+    private bool paused;
     private float spawnRate = 1;
     private int score;
     private int lives;
@@ -28,7 +30,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ChangePaused();
+        }
     }
     IEnumerator SpawnTarget()
     {
@@ -77,5 +82,20 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
         
+    }
+    void ChangePaused()
+    {
+        if (!paused)
+        {
+            paused = true;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;//Time.timeScale to 0 makes it so that physics calculations are paused.
+        }
+        else
+        {
+            paused = false;
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 }
